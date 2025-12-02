@@ -1,0 +1,6 @@
+services:
+  service-orders:
+    build: ./service-orders
+    container_name: service-orders
+    ports:
+      - "8003:5003"

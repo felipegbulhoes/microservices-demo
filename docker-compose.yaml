@@ -1,0 +1,31 @@
+services:
+  service-users:
+    build: ./service-users
+    container_name: service-users
+    ports:
+      - "8001:5001"
+
+  service-products:
+    build: ./service-products
+    container_name: service-products
+    ports:
+      - "8002:5002"
+
+  service-orders:
+    build: ./service-orders
+    container_name: service-orders
+    ports:
+      - "8003:5003"
+    depends_on:
+      - service-users
+      - service-products
+
+  gateway:
+    build: ./gateway
+    container_name: gateway
+    ports:
+      - "8000:8000"
+    depends_on:
+      - service-users
+      - service-products
+      - service-orders
